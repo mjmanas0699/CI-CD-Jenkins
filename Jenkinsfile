@@ -4,10 +4,6 @@ job('Repo-Clonning') {
         github('mjmanas0699/dotsquare', 'main')
     }
     steps {
-        shell('''
-                  mkdir ~/tasks
-                  sudo cp -rvf * ~/tasks
-              ''')
         triggers {
             upstream('seed job', 'SUCCESS')
         }
@@ -24,6 +20,7 @@ job('Create Repository') {
                      echo "Repo present"
                 else
                      aws ecr create-repository --repository-name test-cli
+                     echo "Repo Creation Done"
                 fi
                  ''')
 
@@ -39,7 +36,7 @@ job('Build the Image') {
         shell(''' #/bin/bash
                 repo_name=$(aws ecr describe-repositories --repository-names=test-cli --query='repositories[].repositoryUri' --output text)
                 last_commit=$(git rev-parse HEAD)
-                sudo docker build -t $repo_name:$last_commit -f ~/tasks/Dockerfile .
+                sudo docker build -t $repo_name:$last_commit .
 
                  ''')
         triggers {
