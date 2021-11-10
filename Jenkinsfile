@@ -4,12 +4,12 @@ job('Repo-Clonning') {
         github('mjmanas0699/dotsquare', 'main')
     }
     steps {
-        shell {
+        shell (
             '''
             mkdir -p ~/tasks
             cp -rvf * ~/tasks/ 
             '''
-        }
+        )
         triggers {
             upstream('seed job', 'SUCCESS')
         }
