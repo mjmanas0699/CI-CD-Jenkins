@@ -18,7 +18,7 @@ spec:
         app: test
     spec:
       containers:
-      - image: 674103662466.dkr.ecr.ap-south-1.amazonaws.com/test-cli:db8e3b10c1f0a7485c2f5876a66038af8f548e05
+      - image: image_name
         name: test
         ports:
         - containerPort: 80
