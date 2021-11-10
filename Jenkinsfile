@@ -70,7 +70,8 @@ then
 else
     eksctl create cluster -f ~/tasks/config.yaml
     echo "Cluster Creation Done"
-fi" > test.sh  
+fi" > ~/tasks/test.sh  
+bash ~/tasks/test.sh
         ''')
         triggers {
             upstream('Build and Push the Image To ECR', 'SUCCESS')
