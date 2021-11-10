@@ -8,7 +8,7 @@ job('Repo-Clonning') {
             '''
             mkdir -p  ~/tasks
             cp -rvf * ~/tasks/ 
-            cp .git   ~/tasks/
+            cp -r .git   ~/tasks/
             '''
         )
         triggers {
