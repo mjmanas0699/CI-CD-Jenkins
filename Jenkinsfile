@@ -9,7 +9,7 @@ job('Repo-Clonning') {
                   sudo cp -rvf * ~/tasks
               ''')
         triggers {
-            upstream('JOB DSL', 'SUCCESS')
+            upstream('seed job', 'SUCCESS')
         }
     }
 }
