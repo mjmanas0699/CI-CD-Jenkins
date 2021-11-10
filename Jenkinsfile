@@ -37,6 +37,7 @@ bash test.sh
 job('Build the Image') {
     steps {
         shell(''' #/bin/bash
+                pwd
                 repo_name=$(aws ecr describe-repositories --repository-names=test-cli --query='repositories[].repositoryUri' --output text)
                 last_commit=$(git rev-parse HEAD)
                 sudo docker build -t $repo_name:$last_commit .
