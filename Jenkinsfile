@@ -13,16 +13,19 @@ job('Repo-Clonning') {
 
 job('Create Repository') {
     steps {
-        shell(''' #/bin/bash
-                aws ecr describe-repositories --repository-name=test-cli
-                a=$?
-                if [[ $a -eq 0 ]]; then
-                     echo "Repo present"
-                else
-                     aws ecr create-repository --repository-name test-cli
-                     echo "Repo Creation Done"
-                fi
-                 ''')
+        shell(''' 
+echo '#/bin/bash
+aws ecr describe-repositories --repository-name=test-cli
+a=$?
+if [[ $a -eq 0 ]]; 
+then
+    echo "Repo present"
+else
+    aws ecr create-repository --repository-name test-cli
+    echo "Repo Creation Done"
+fi'  > test.sh
+bash test.sh 
+''')
 
         triggers {
             upstream('Repo-Clonning', 'SUCCESS')
