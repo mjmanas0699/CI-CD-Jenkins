@@ -45,8 +45,7 @@ job('Build the Image') {
         shell(''' #/bin/bash
                 pwd
                 repo_name=$(aws ecr describe-repositories --repository-names=test-cli --query='repositories[].repositoryUri' --output text)
-                cd ~/tasks/
-                last_commit=$(git rev-parse HEAD)
+                cd ~/tasks/ && last_commit=$(git rev-parse HEAD)
                 sudo docker build -t $repo_name:$last_commit -f ~/tasks/Dockerfile .
 
                  ''')
