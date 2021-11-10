@@ -16,7 +16,7 @@ job('Create Repository') {
         shell(''' #/bin/bash
                 aws ecr describe-repositories --repository-name=test-cli
                 a=$?
-                if [ $a -eq 0 ]; then
+                if [[ $a -eq 0 ]]; then
                      echo "Repo present"
                 else
                      aws ecr create-repository --repository-name test-cli
