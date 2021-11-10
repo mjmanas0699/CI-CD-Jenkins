@@ -61,7 +61,7 @@ job('Build and Push the Image To ECR') {
 job('Create EKS Cluster If Not Exists') {
     steps {
         shell('''
-#/bin/bash
+echo "#/bin/bash
 aws eks describe-cluster --name test-cluster
 a=$?
 if [[ $a -eq 0 ]]; 
@@ -70,7 +70,7 @@ then
 else
     eksctl create cluster -f ~/tasks/config.yaml
     echo "Cluster Creation Done"
-fi  
+fi" > test.sh  
         ''')
         triggers {
             upstream('Build and Push the Image To ECR', 'SUCCESS')
